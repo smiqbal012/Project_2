@@ -2,6 +2,18 @@
 
 The `Project2_smiqbal` package is designed to simulate particles' movement and interactions under the influence of an electric field. This package allows users to visualize particle positions over time and assess their charge and mass distributions before and after interactions.
 
+## Directory
+packaging/
+|-- LICENSE
+|-- pyproject.toml
+|-- README.md
+|-- src/
+|   |-- Project_2_smiqbal/
+|       |-- __init__.py
+|       |-- main.py
+|
+|-- tests/
+
 ## Testing Installation
 
 To test if the package is installed correctly:
