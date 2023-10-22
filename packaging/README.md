@@ -14,6 +14,11 @@ packaging/
 |
 |-- tests/
 
+# Main program file location
+|-- src/
+|   |-- Project_2_smiqbal/
+|       |-- main.py
+
 ## Testing Installation
 
 To test if the package is installed correctly:
