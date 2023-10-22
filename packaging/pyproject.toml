@@ -3,7 +3,7 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [metadata]
-name = "my_package"
+name = "Project_2"
 version = "0.1.0"
 description = "Please read README.md"
 long_description = "file: README.md"
