@@ -5,11 +5,11 @@ build-backend = "setuptools.build_meta"
 [metadata]
 name = "my_package"
 version = "0.1.0"
-description = "My description here."
+description = "Please read README.md"
 long_description = "file: README.md"
 long_description_content_type = "text/markdown"
-author = "Your Name"
-author_email = "youremail@example.com"
+author = "Lima, Asif"
+author_email = "smiqbal@syr.edu"
 license = "MIT"
 classifiers = [
     "License :: OSI Approved :: MIT License",
