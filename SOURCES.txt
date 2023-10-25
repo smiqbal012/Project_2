@@ -1,0 +1,10 @@
+README.md
+pyproject.toml
+setup.py
+particle_sim/__init__.py
+particle_sim/particle_simulation.py
+project2package.egg-info/PKG-INFO
+project2package.egg-info/SOURCES.txt
+project2package.egg-info/dependency_links.txt
+project2package.egg-info/requires.txt
+project2package.egg-info/top_level.txt
