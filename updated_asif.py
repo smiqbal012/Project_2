@@ -46,7 +46,7 @@ class Simulation:
         dxdt = v
         dvdt = q * E / m
         return [dxdt, dvdt]
-        
+
     def rk4(self, y, t, dt, func, *args):
         k1 = dt * np.array(func(y, t, *args))
         k2 = dt * np.array(func(y + 0.5 * k1, t + 0.5 * dt, *args))
@@ -60,6 +60,7 @@ class Simulation:
             y0 = [p.position, p.velocity]
             sol_odeint = odeint(self.particle_ode, y0, t, args=(p.charge, p.mass, self.E))[:,0]
             self.positions_odeint.append(sol_odeint)
+
             sol_rk4 = [y0]
             for i in range(1, len(t)):
                 next_step = self.rk4(sol_rk4[-1], t[i-1], self.dt, self.particle_ode, p.charge, p.mass, self.E)
@@ -124,24 +125,19 @@ class Simulation:
                 particle.charge = np.random.uniform(-1, 1)
 
     def plot_comparison(self):
-        time_idx_4_9s = np.abs(np.linspace(0, 5, self.time_steps) - 4.9).argmin()
-        time_idx_2s = np.abs(np.linspace(0, 5, self.time_steps) - 2.0).argmin()
+        time_idx = np.abs(np.linspace(0, 5, self.time_steps) - 4.9).argmin()
         plt.figure(figsize=(12, 6))
-        positively_charged_plotted = False
         for i, (particle, pos_odeint, pos_rk4) in enumerate(zip(self.particles, self.positions_odeint, self.positions_rk4)):
             if particle.charge > 0:
-                plt.scatter(i, pos_odeint[time_idx_2s], color='g', s=10, label='odeint at 2s' if i == 0 else "")
-                plt.scatter(i, pos_rk4[time_idx_2s], color='y', s=10, label='RK4 at 2s' if i == 0 else "")
-                plt.scatter(i, pos_odeint[time_idx_4_9s], color='b', s=10, label='odeint at 4.9s' if i == 0 else "")
-                plt.scatter(i, pos_rk4[time_idx_4_9s], color='r', s=10, label='RK4 at 4.9s' if i == 0 else "")
-        plt.title('Comparison of Positively Charged Particle Positions at t=2s and =4.9s')
+                plt.scatter(i, pos_odeint[time_idx], color='b', s=10, label='odeint' if i == 0 else "")
+                plt.scatter(i, pos_rk4[time_idx], color='r', s=10, label='RK4' if i == 0 else "")
+        plt.title('Comparison of Positively Charged Particle Positions at t=4.9s')
         plt.xlabel('Particle Index')
         plt.ylabel('Position')
-        plt.ylim(0, 20)
-        if positively_charged_plotted:
-            plt.legend()
+        plt.legend()
+        plt.ylim(0, 80)
         plt.grid(True)
-        plt.savefig("PositionComparison_odeint_RK4_at_4.9s and 2s.png")
+        plt.savefig("PositionComparison_odeint_RK4_at_4.9s.png")
         plt.show()
 
 if __name__ == "__main__":
