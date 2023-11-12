@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import time
 from scipy.integrate import odeint
+import cProfile
 
 def pdf(x, k):
     return k * np.exp(-x)
@@ -142,6 +143,7 @@ class Simulation:
 
 if __name__ == "__main__":
     sim = Simulation(k=3.0)
+    cProfile.runctx('sim.evolve()', globals(), locals(), 'evolve_stats.prof')
     sim.evolve()
     sim.calculate_kinetic_energy()
     sim.plot_kinetic_energy()
